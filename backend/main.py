@@ -346,7 +346,7 @@ class PointDataRequest(BaseModel):
 app = FastAPI()
 origins = [
     "http://localhost:5173",
-    "https://your-netlify-app-name.netlify.app" # Make sure to update this later
+    "https://gee-map-dashboard.netlify.app/" # Make sure to update this later
 ]
 app.add_middleware(
     CORSMiddleware,
