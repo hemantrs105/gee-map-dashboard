@@ -1,0 +1,182 @@
+/* frontend/src/App.css */
+:root {
+  --background-color: #f8f9fa;
+  --sidebar-bg: #ffffff;
+  --border-color: #dee2e6;
+  --text-color: #212529;
+  --text-muted: #6c757d;
+  --accent-color: #007bff;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  --border-radius: 8px;
+}
+
+body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  overflow: hidden;
+}
+
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.map-container {
+  flex-grow: 1; /* This makes the map take up the remaining space */
+  height: 100%;
+}
+
+.sidebar {
+  width: 380px; /* A slightly wider sidebar for new elements */
+  flex-shrink: 0; /* Prevents the sidebar from shrinking */
+  background-color: var(--sidebar-bg);
+  padding: 24px;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto; /* Allow sidebar to scroll if content overflows */
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 16px;
+  margin-bottom: 8px;
+}
+
+.sidebar-header h2 {
+  margin: 0;
+  font-size: 1.5em;
+  color: var(--text-color);
+}
+
+.control-group {
+  background-color: #fff;
+  padding: 16px;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.control-group:hover {
+  box-shadow: var(--shadow);
+}
+
+.control-group h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 1.1em;
+  color: var(--text-color);
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 0.9em;
+  color: var(--text-muted);
+}
+
+input[type="month"], button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  font-size: 1em;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button.secondary {
+  background-color: #6c757d;
+}
+button.secondary:hover {
+  background-color: #5a6268;
+}
+
+.legend {
+  line-height: 1.8;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.9em;
+}
+
+.legend-gradient {
+  width: 100%;
+  height: 20px;
+  background: linear-gradient(to right, #d73027, #fee08b, #1a9850);
+  border-radius: 4px;
+  margin-top: 4px;
+}
+
+.legend-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8em;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.info-box {
+  padding: 12px;
+  background-color: var(--background-color);
+  border-radius: var(--border-radius);
+  font-size: 0.9em;
+  min-height: 60px;
+  color: var(--text-muted);
+}
+
+/* Chart Styles */
+.chart-container {
+  margin-top: 16px;
+  width: 100%;
+  height: 200px;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.chart-header h4 {
+  margin: 0;
+  font-size: 1em;
+}
+.chart-header button {
+  width: auto;
+  padding: 4px 8px;
+  font-size: 0.8em;
+}

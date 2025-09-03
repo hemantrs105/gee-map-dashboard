@@ -1,0 +1,6 @@
+# backend/.gitignore
+venv/
+*.pyc
+__pycache__/
+.env
+google_credentials.json
