@@ -346,7 +346,7 @@ class PointDataRequest(BaseModel):
 app = FastAPI()
 origins = [
     "http://localhost:5173",
-    "https://gee-map-dashboard.netlify.app/" # Make sure to update this later
+    "https://gee-map-dashboard.netlify.app/" 
 ]
 app.add_middleware(
     CORSMiddleware,
@@ -384,10 +384,8 @@ def get_ee_geometry(aoi_geojson: Optional[Dict[str, Any]] = None) -> ee.Geometry
     return DEFAULT_AOI
 
 def mask_s2_clouds(image):
-    qa = image.select('QA60')
-    cloud_bit_mask = 1 << 10
-    cirrus_bit_mask = 1 << 11
-    mask = qa.bitwiseAnd(cloud_bit_mask).eq(0).And(qa.bitwiseAnd(cirrus_bit_mask).eq(0))
+    qa = image.select('MSK_CLDPRB')
+    mask = qa.lt(30).selfMask()
     return image.updateMask(mask).divide(10000).copyProperties(image, ["system:time_start"])
 
 def add_ndvi(image):
@@ -420,7 +418,7 @@ def get_map_id(req: MapRequest):
 
 def calculate_time_series(point: ee.Geometry, end_year: int, end_month: int, aoi: ee.Geometry):
     end_date = pd.to_datetime(f'{end_year}-{end_month}-01')
-    date_range = pd.date_range(end=end_date, periods=12, freq='MS')
+    date_range = pd.date_range(end=end_date, periods=6, freq='MS')
     s2_collection = get_monthly_ndvi_collection(aoi)
 
     def get_monthly_mean(d):
