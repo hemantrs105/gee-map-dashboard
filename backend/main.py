@@ -418,7 +418,7 @@ def get_map_id(req: MapRequest):
 
 def calculate_time_series(point: ee.Geometry, end_year: int, end_month: int, aoi: ee.Geometry):
     end_date = pd.to_datetime(f'{end_year}-{end_month}-01')
-    date_range = pd.date_range(end=end_date, periods=6, freq='MS')
+    date_range = pd.date_range(end=end_date, periods=12, freq='MS')
     s2_collection = get_monthly_ndvi_collection(aoi)
 
     def get_monthly_mean(d):
