@@ -221,10 +221,8 @@ def get_ee_geometry(aoi_geojson: Optional[Dict[str, Any]] = None) -> ee.Geometry
     return DEFAULT_AOI
 
 def mask_s2_clouds(image):
-    qa = image.select('QA60')
-    cloud_bit_mask = 1 << 10
-    cirrus_bit_mask = 1 << 11
-    mask = qa.bitwiseAnd(cloud_bit_mask).eq(0).And(qa.bitwiseAnd(cirrus_bit_mask).eq(0))
+    qa = image.select('MSK_CLDPRB')
+    mask = qa.lt(30).selfMask()
     return image.updateMask(mask).divide(10000).copyProperties(image, ["system:time_start"])
 
 def add_ndvi(image):
